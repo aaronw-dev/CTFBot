@@ -12,7 +12,8 @@ intents = discord.Intents().all()
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
-webhookurl = "https://discord.com/api/webhooks/1145053865599828000/qx5snul2GwFrSNz3-qvEupR-mGgKmrCr2L2U9rfstXarp_x2QaaioR1olmbuUqjkst9w"
+with open("webhookurl.token", "r") as file:
+    webhookurl = file.read()
 
 @tree.command(name="getctf", description="Find upcoming CTFs")
 #variable structure: VARIABLENAME: TYPE = DEFAULTVALUE
