@@ -1,0 +1,627 @@
+{
+    "kind": "calendar#events",
+    "etag": "\"p3389h9tuvrqo00o\"",
+    "summary": "CTFtime.org CTF events",
+    "description": "CTFtime.org events export to Google Calendar",
+    "updated": "2023-08-24T19:05:03.186Z",
+    "timeZone": "Europe/London",
+    "accessRole": "reader",
+    "defaultReminders": [],
+    "nextPageToken": "CigKGnM0NWc5NzM1M3M0aGptMDQ4c2c1aG9hdGVvGAEggIDAleecrckYGg0IABIAGNCYp77-9YADIgcIBBCa4vs2",
+    "items": [
+        {
+            "kind": "calendar#event",
+            "etag": "\"3354696605858000\"",
+            "id": "89e3dinpdlkkl9664vqheqeitg",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=ODllM2RpbnBkbGtrbDk2NjR2cWhlcWVpdGcgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-02-25T18:05:02.000Z",
+            "updated": "2023-02-25T18:05:02.929Z",
+            "summary": "Hack.lu CTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/1921/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-10-13T18:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-10-15T18:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "89e3dinpdlkkl9664vqheqeitg@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3356784605966000\"",
+            "id": "0lb0nt4r523or59ci2kcdoiq3k",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=MGxiMG50NHI1MjNvcjU5Y2kya2Nkb2lxM2sgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-03-09T20:05:02.000Z",
+            "updated": "2023-03-09T20:05:02.983Z",
+            "summary": "SekaiCTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/1923/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-08-25T16:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-08-27T16:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "0lb0nt4r523or59ci2kcdoiq3k@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3360247805156000\"",
+            "id": "87t9aamauuh9jmbfi4ftpj7d9g",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=ODd0OWFhbWF1dWg5am1iZmk0ZnRwajdkOWcgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-03-29T21:05:02.000Z",
+            "updated": "2023-03-29T21:05:02.578Z",
+            "summary": "ASIS CTF Finals 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/1953/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-12-29T14:30:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-12-30T14:30:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "87t9aamauuh9jmbfi4ftpj7d9g@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3360247806150000\"",
+            "id": "qe5efq4rnvg938445095dbi2b8",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=cWU1ZWZxNHJudmc5Mzg0NDUwOTVkYmkyYjggY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-03-29T21:05:03.000Z",
+            "updated": "2023-03-29T21:05:03.075Z",
+            "summary": "ASIS CTF Quals 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/1952/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-09-22T14:30:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-09-23T14:30:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "qe5efq4rnvg938445095dbi2b8@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3363257405722000\"",
+            "id": "36k5f1belemvng1vpsiiijrh60",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=MzZrNWYxYmVsZW12bmcxdnBzaWlpanJoNjAgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-04-16T07:05:02.000Z",
+            "updated": "2023-04-16T07:05:02.861Z",
+            "summary": "CakeCTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/1973/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-09-02T05:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-09-03T05:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "36k5f1belemvng1vpsiiijrh60@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3363833406170000\"",
+            "id": "obo36ia6ridjiah9nvupovnkq0",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=b2JvMzZpYTZyaWRqaWFoOW52dXBvdm5rcTAgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-04-19T15:05:03.000Z",
+            "updated": "2023-04-19T15:05:03.085Z",
+            "summary": "FE-CTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/1979/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-10-27T11:37:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-10-29T12:37:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "obo36ia6ridjiah9nvupovnkq0@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3366115805880000\"",
+            "id": "6tv44l0tm6tbfr7a1gsgg8qaak",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=NnR2NDRsMHRtNnRiZnI3YTFnc2dnOHFhYWsgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-05-02T20:05:02.000Z",
+            "updated": "2023-05-02T20:05:02.940Z",
+            "summary": "pingCTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/1987/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-12-08T17:30:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-12-10T22:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "6tv44l0tm6tbfr7a1gsgg8qaak@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3366115807144000\"",
+            "id": "d6r164mjmvm0hvskbbmfr2cbco",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=ZDZyMTY0bWptdm0waHZza2JibWZyMmNiY28gY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-05-02T20:05:03.000Z",
+            "updated": "2023-05-02T20:05:03.572Z",
+            "summary": " GlacierCTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/1992/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-11-24T18:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-11-26T18:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "d6r164mjmvm0hvskbbmfr2cbco@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3368794206574000\"",
+            "id": "hu8kpp65ckc6hap80u50ngpm2s",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=aHU4a3BwNjVja2M2aGFwODB1NTBuZ3BtMnMgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-05-18T08:05:03.000Z",
+            "updated": "2023-05-18T08:05:03.287Z",
+            "summary": "SECCON CTF 2023 Quals",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2003/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-09-16T05:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-09-17T05:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "hu8kpp65ckc6hap80u50ngpm2s@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3371213406072000\"",
+            "id": "kutthraiblmjpchfft37uqpod8",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=a3V0dGhyYWlibG1qcGNoZmZ0Mzd1cXBvZDggY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-06-01T08:05:03.000Z",
+            "updated": "2023-06-01T08:05:03.036Z",
+            "summary": "Hackvens 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2010/\n",
+            "location": "France, Lyon",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-10-13T09:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-10-14T06:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "kutthraiblmjpchfft37uqpod8@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3371213409734000\"",
+            "id": "5goge7lh0k9a3k0680c0d58amk",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=NWdvZ2U3bGgwazlhM2swNjgwYzBkNThhbWsgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-06-01T08:05:04.000Z",
+            "updated": "2023-06-01T08:05:04.867Z",
+            "summary": "FAUST CTF 2023",
+            "description": "Format: Attack-Defense\nURL: https://ctftime.org/event/2011/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-09-23T12:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-09-23T21:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "5goge7lh0k9a3k0680c0d58amk@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3373863004868000\"",
+            "id": "00la9hj6bcs9hbisp2pta8lbns",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=MDBsYTloajZiY3M5aGJpc3AycHRhOGxibnMgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-06-16T16:05:02.000Z",
+            "updated": "2023-06-16T16:05:02.434Z",
+            "summary": "DEADFACE CTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2031/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-10-20T14:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-10-22T00:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "00la9hj6bcs9hbisp2pta8lbns@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3373863006392000\"",
+            "id": "bcsm0776s5eqv2ufj0fte3chg8",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=YmNzbTA3NzZzNWVxdjJ1ZmowZnRlM2NoZzggY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-06-16T16:05:03.000Z",
+            "updated": "2023-06-16T16:05:03.196Z",
+            "summary": "PatriotCTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2030/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-09-08T21:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-09-10T21:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "bcsm0776s5eqv2ufj0fte3chg8@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3373863007060000\"",
+            "id": "vq9mf6n8qbc69qk5l9tajdlqh0",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=dnE5bWY2bjhxYmM2OXFrNWw5dGFqZGxxaDAgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-06-16T16:05:03.000Z",
+            "updated": "2023-06-16T16:05:03.530Z",
+            "summary": "HITCON CTF 2023 Quals",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2019/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-09-08T14:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-09-10T14:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "vq9mf6n8qbc69qk5l9tajdlqh0@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3377297406146000\"",
+            "id": "ojh77ldaurbkbrbp54go8fk8cc",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=b2poNzdsZGF1cmJrYnJicDU0Z284Zms4Y2MgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-07-06T13:05:03.000Z",
+            "updated": "2023-07-06T13:05:03.073Z",
+            "summary": "m0leCon CTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2033/\n",
+            "location": "Italy, Turin",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-11-30T17:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-12-01T17:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "ojh77ldaurbkbrbp54go8fk8cc@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3377297407486000\"",
+            "id": "9t4pfva5tkfeiu1ettlm7hbspc",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=OXQ0cGZ2YTV0a2ZlaXUxZXR0bG03aGJzcGMgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-07-06T13:05:03.000Z",
+            "updated": "2023-07-06T13:05:03.743Z",
+            "summary": "HITCON CTF 2023 Final",
+            "description": "Format: Attack-Defense\nURL: https://ctftime.org/event/2035/\n",
+            "location": "Taiwan, Taipei",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-11-14T00:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-11-15T08:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "9t4pfva5tkfeiu1ettlm7hbspc@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3377297408386000\"",
+            "id": "2nrc9s3umk5vsmm9n5e19gfvko",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=Mm5yYzlzM3VtazV2c21tOW41ZTE5Z2Z2a28gY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-07-06T13:05:04.000Z",
+            "updated": "2023-07-06T13:05:04.193Z",
+            "summary": "THE HAXORCIST - A HALLOWEEN CTF",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2016/\n",
+            "location": "IBM Garage for Defense, Godesberger Allee 127, 53175 Bonn, Germany",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-10-28T08:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-10-28T18:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "2nrc9s3umk5vsmm9n5e19gfvko@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3377297409264000\"",
+            "id": "vj75f5sfgko2qav4143tpq6mvs",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=dmo3NWY1c2Zna28ycWF2NDE0M3RwcTZtdnMgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-07-06T13:05:04.000Z",
+            "updated": "2023-07-06T13:05:04.632Z",
+            "summary": "Internet Festival 2023 CTF Finals",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2039/\n",
+            "location": "Italy, Pisa",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-10-06T13:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-10-07T13:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "vj75f5sfgko2qav4143tpq6mvs@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3377297410058000\"",
+            "id": "cokm2vgrijs41v4qkkt08v4g7k",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=Y29rbTJ2Z3JpanM0MXY0cWtrdDA4djRnN2sgY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-07-06T13:05:05.000Z",
+            "updated": "2023-07-06T13:05:05.029Z",
+            "summary": "TCP1P CTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2001/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-10-06T09:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-10-07T21:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "cokm2vgrijs41v4qkkt08v4g7k@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3377297410842000\"",
+            "id": "qa0sirg8lntt9rsp2geglaj4p8",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=cWEwc2lyZzhsbnR0OXJzcDJnZWdsYWo0cDggY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-07-06T13:05:05.000Z",
+            "updated": "2023-07-06T13:05:05.421Z",
+            "summary": "MapleCTF 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2038/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-09-30T00:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-10-02T00:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "qa0sirg8lntt9rsp2geglaj4p8@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        },
+        {
+            "kind": "calendar#event",
+            "etag": "\"3377297411670000\"",
+            "id": "s45g97353s4hjm048sg5hoateo",
+            "status": "confirmed",
+            "htmlLink": "https://www.google.com/calendar/event?eid=czQ1Zzk3MzUzczRoam0wNDhzZzVob2F0ZW8gY3RmdGltZUBt&ctz=Africa/Abidjan",
+            "created": "2023-07-06T13:05:05.000Z",
+            "updated": "2023-07-06T13:05:05.835Z",
+            "summary": "Information and Technology Festival 2023",
+            "description": "Format: Jeopardy\nURL: https://ctftime.org/event/2043/\n",
+            "creator": {
+                "email": "171229498774-ffl5fll0b8ort1dmjgm5jta60n0dnbkd@developer.gserviceaccount.com"
+            },
+            "organizer": {
+                "email": "ctftime@gmail.com",
+                "self": true
+            },
+            "start": {
+                "dateTime": "2023-09-09T08:00:00Z",
+                "timeZone": "UTC"
+            },
+            "end": {
+                "dateTime": "2023-09-10T08:00:00Z",
+                "timeZone": "UTC"
+            },
+            "iCalUID": "s45g97353s4hjm048sg5hoateo@google.com",
+            "sequence": 0,
+            "eventType": "default"
+        }
+    ]
+}
