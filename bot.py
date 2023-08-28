@@ -18,15 +18,14 @@ with open("webhookurl.token", "r") as file:
 
 @tree.command(name="ctfinfo", description="Get more information about a CTF event")
 async def ctfinfo(interaction, eventid: int):
-    await interaction.response.send_message('Finding information about event with ID: ' + str(eventid) + "...", ephemeral=True)
-
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     websiteresponse = requests.get("https://ctftime.org/event/" + str(eventid), headers=headers)
     websitehtml = websiteresponse.text
     '''
     with open("output.html", "w", encoding="utf-8") as file:
         file.write(websitehtml) '''
-    websitehtml = websitehtml.replace("<br />", "\n")
+    websitehtml = websitehtml.replace("<br />", "\n").replace("<b>", "### ")
+    
     
     soup = BeautifulSoup(websitehtml, "html.parser")
     pageheader = soup.find("div", {"class" : "page-header"}).find("h2")
@@ -38,8 +37,9 @@ async def ctfinfo(interaction, eventid: int):
     informationboxes = informationbox.findChildren("p" , recursive=False)
     eventformat = informationboxes[4].get_text().replace("Format: ", "")
     eventurl = informationboxes[5].get_text().replace("Official URL: ", "")
-    eventlocation = informationboxes[1].get_text()
+    eventlocation = informationboxes[1].get_text().replace("### ", "")
     message = "> # [" + eventname + "](<" + eventurl + ">)" + "\n"
+    message += "> ## Event ID: `" + str(eventid) + "`\n"
     message += "> ## Format: " + eventformat + "\n"
     message += "> ## Location: " + eventlocation.replace("On-line", "Online") + "\n"
     message += "> ## Teams: " + teamamount + "\n"
@@ -49,7 +49,7 @@ async def ctfinfo(interaction, eventid: int):
         #linkdiv = div.find("a", href=True)
         #message += "> 🔹 [" + linkdiv.get_text().strip() + "](<https://ctftime.org" + linkdiv["href"] + ">)" + "\n"
 
-    await interaction.followup.send(message, ephemeral=False)
+    await interaction.response.send_message(message, ephemeral=False)
 
 
 @tree.command(name="getctf", description="Find upcoming CTFs") #register a command into discord
@@ -89,7 +89,8 @@ async def getctf(interaction, amount: app_commands.Range[int, 5, 20] = 10):
         eventLink = item["description"][-32:-2]
         names.append(item)
         finalmessage += "> " + "[" + item["summary"] + "](<" + eventLink + ">)" + " on " + "<t:" + str(calendar.timegm(eventTime.timetuple())) + ":D>"
-        finalmessage += (" duration: " + str(durationHours) + " hour" + ("s" if durationHours != 1 else "") + " " + ((str(durationMinutes) + " minute" + ("s" if durationHours != 1 else "")) if durationMinutes != 0 else "")) if durationHours != 0 else "" 
+        finalmessage += "   **ID:** `" + eventLink.replace("https://ctftime.org/event/", "") + "`"
+        finalmessage += ("   **duration:** " + str(durationHours) + " hour" + ("s" if durationHours != 1 else "") + " " + ((str(durationMinutes) + " minute" + ("s" if durationHours != 1 else "")) if durationMinutes != 0 else "")) if durationHours != 0 else "" 
         finalmessage += "\n"
     finalmessage += "\n"
     body = {
