@@ -23,6 +23,11 @@ async def ctfinfo(interaction, eventid: int):
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     websiteresponse = requests.get("https://ctftime.org/event/" + str(eventid), headers=headers)
     websitehtml = websiteresponse.text
+    '''
+    with open("output.html", "w", encoding="utf-8") as file:
+        file.write(websitehtml) '''
+    websitehtml = websitehtml.replace("<br />", "\n")
+    
     soup = BeautifulSoup(websitehtml, "html.parser")
     pageheader = soup.find("div", {"class" : "page-header"}).find("h2")
     eventname = pageheader.get_text()
@@ -34,13 +39,16 @@ async def ctfinfo(interaction, eventid: int):
     eventformat = informationboxes[4].get_text().replace("Format: ", "")
     eventurl = informationboxes[5].get_text().replace("Official URL: ", "")
     eventlocation = informationboxes[1].get_text()
-    message = "# [" + eventname + "](<" + eventurl + ">)" + "\n"
-    message += "## Format: " + eventformat + "\n"
-    message += "## Location: " + eventlocation.replace("On-line", "Online") + "\n"
-    message += "## Teams (1-10 of " + teamamount + ")\n"
-    for div in teams[1:11]:
-        linkdiv = div.find("a", href=True)
-        message += "[" + linkdiv.get_text().strip() + "](<https://ctftime.org" + linkdiv["href"] + ">)" + "\n"
+    message = "> # [" + eventname + "](<" + eventurl + ">)" + "\n"
+    message += "> ## Format: " + eventformat + "\n"
+    message += "> ## Location: " + eventlocation.replace("On-line", "Online") + "\n"
+    message += "> ## Teams: " + teamamount + "\n"
+    message += "> ## Description \n> "
+    message += soup.find("div", {"id" : "id_description"}).get_text().strip().replace("\n", "\n> ") + "\n"
+    #for div in teams[1:11]:
+        #linkdiv = div.find("a", href=True)
+        #message += "> 🔹 [" + linkdiv.get_text().strip() + "](<https://ctftime.org" + linkdiv["href"] + ">)" + "\n"
+
     await interaction.followup.send(message, ephemeral=False)
 
 
@@ -56,8 +64,8 @@ async def getctf(interaction, amount: app_commands.Range[int, 5, 20] = 10):
     rescontent = res.content.decode('utf8')  # .replace("'", '"')
 
     responsejson = json.loads(rescontent)
-    with open("output.json", "w") as file:
-        json.dump(responsejson, file, indent=4)
+    '''with open("output.json", "w") as file:
+        json.dump(responsejson, file, indent=4)'''
     finalmessage = '''
     > ## Here are some upcoming CTFs:
     '''
