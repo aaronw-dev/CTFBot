@@ -21,7 +21,7 @@ async def ctfinfo(interaction, eventid: int):
     await interaction.response.send_message('Finding information about event with ID: ' + str(eventid) + "...", ephemeral=True)
 
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-    websiteresponse = requests.get("https://ctftime.org/event/2003", headers=headers)
+    websiteresponse = requests.get("https://ctftime.org/event/" + str(eventid), headers=headers)
     websitehtml = websiteresponse.text
     soup = BeautifulSoup(websitehtml, "html.parser")
     pageheader = soup.find("div", {"class" : "page-header"}).find("h2")
@@ -29,10 +29,18 @@ async def ctfinfo(interaction, eventid: int):
     teamamount = soup.find(lambda tag:tag.name=="p" and "teams total" in tag.text)
     teamamount = teamamount.get_text().split(" ")[0]
     teams = soup.find_all("tr")
-    message = "# " + eventname + "\n"
+    informationbox = soup.find("div", {"class" : "span10"})
+    informationboxes = informationbox.findChildren("p" , recursive=False)
+    eventformat = informationboxes[4].get_text().replace("Format: ", "")
+    eventurl = informationboxes[5].get_text().replace("Official URL: ", "")
+    eventlocation = informationboxes[1].get_text()
+    message = "# [" + eventname + "](<" + eventurl + ">)" + "\n"
+    message += "## Format: " + eventformat + "\n"
+    message += "## Location: " + eventlocation.replace("On-line", "Online") + "\n"
     message += "## Teams (1-10 of " + teamamount + ")\n"
     for div in teams[1:11]:
-        message += "`" + div.get_text().strip() + "`\n"
+        linkdiv = div.find("a", href=True)
+        message += "[" + linkdiv.get_text().strip() + "](<https://ctftime.org" + linkdiv["href"] + ">)" + "\n"
     await interaction.followup.send(message, ephemeral=False)
 
 
