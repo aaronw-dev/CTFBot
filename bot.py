@@ -1,26 +1,47 @@
-import requests
-import json
-from datetime import datetime
-import calendar
-import discord
-from discord import app_commands
-import pytz
-from dateutil.relativedelta import relativedelta
-from math import *
+import requests #so we can get google calendar info
+import json #provides functions to go from plain text to dicts and for logging
+from datetime import datetime #stuff to find certain CTF events
+import calendar #functions to find date names
+import discord #stuff for discord bot
+from discord import app_commands #allows discord commands
+import pytz # for date localization
+from dateutil.relativedelta import relativedelta #utility to get one full year forward of CTF events
+from math import * #all math functions
+from bs4 import BeautifulSoup
 
-intents = discord.Intents().all()
-client = discord.Client(intents=intents)
-tree = app_commands.CommandTree(client)
+intents = discord.Intents().all() #we need all discord intents
+client = discord.Client(intents=intents) #init a client with given intents
+tree = app_commands.CommandTree(client) #for discord commands
 
 with open("webhookurl.token", "r") as file:
-    webhookurl = file.read()
+    webhookurl = file.read() #get the webhook url from file
 
-@tree.command(name="getctf", description="Find upcoming CTFs")
+@tree.command(name="ctfinfo", description="Get more information about a CTF event")
+async def ctfinfo(interaction, eventid: int):
+    await interaction.response.send_message('Finding information about event with ID: ' + str(eventid) + "...", ephemeral=True)
+
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+    websiteresponse = requests.get("https://ctftime.org/event/2003", headers=headers)
+    websitehtml = websiteresponse.text
+    soup = BeautifulSoup(websitehtml, "html.parser")
+    pageheader = soup.find("div", {"class" : "page-header"}).find("h2")
+    eventname = pageheader.get_text()
+    teamamount = soup.find(lambda tag:tag.name=="p" and "teams total" in tag.text)
+    teamamount = teamamount.get_text().split(" ")[0]
+    teams = soup.find_all("tr")
+    message = "# " + eventname + "\n"
+    message += "## Teams (1-10 of " + teamamount + ")\n"
+    for div in teams[1:11]:
+        message += "`" + div.get_text().strip() + "`\n"
+    await interaction.followup.send(message, ephemeral=False)
+
+
+@tree.command(name="getctf", description="Find upcoming CTFs") #register a command into discord
 #variable structure: VARIABLENAME: TYPE = DEFAULTVALUE
 async def getctf(interaction, amount: app_commands.Range[int, 5, 20] = 10):
-    maxresults = amount + 1
-    timemin = datetime.now().strftime("%Y-%m-%d")
-    timemax = (datetime.now() + relativedelta(years=1)).strftime("%Y-%m-%d")
+    maxresults = amount + 1 #maxresults needs value + 1 for some reason
+    timemin = datetime.now().strftime("%Y-%m-%d") #timemin is the current datetime
+    timemax = (datetime.now() + relativedelta(years=1)).strftime("%Y-%m-%d") #timemax is the current datetime + 1 year
     rssurl = f"https://clients6.google.com/calendar/v3/calendars/ctftime@gmail.com/events?calendarId=ctftime%40gmail.com&singleEvents=true&timeZone=Africa%2FAbidjan&maxAttendees=1&maxResults={maxresults}&sanitizeHtml=true&timeMin={timemin}T00%3A00%3A00Z&timeMax={timemax}T00%3A00%3A00Z&key=AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs"
     res = requests.get(rssurl)
     
