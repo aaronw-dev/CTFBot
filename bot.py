@@ -8,7 +8,6 @@ import pytz # for date localization
 from dateutil.relativedelta import relativedelta #utility to get one full year forward of CTF events
 from math import * #all math functions
 from bs4 import BeautifulSoup
-
 intents = discord.Intents().all() #we need all discord intents
 client = discord.Client(intents=intents) #init a client with given intents
 tree = app_commands.CommandTree(client) #for discord commands
@@ -27,7 +26,7 @@ async def ctfinfo(interaction, eventid: int):
     websitehtml = websitehtml.replace("<br />", "\n").replace("<b>", "### ")
     
     
-    soup = BeautifulSoup(websitehtml, "html.parser")
+    soup = BeautifulSoup(websitehtml, 'html5lib')
     pageheader = soup.find("div", {"class" : "page-header"}).find("h2")
     eventname = pageheader.get_text()
     teamamount = soup.find(lambda tag:tag.name=="p" and "teams total" in tag.text)
@@ -54,6 +53,34 @@ async def ctfinfo(interaction, eventid: int):
 
 @tree.command(name="getctf", description="Find upcoming CTFs") #register a command into discord
 #variable structure: VARIABLENAME: TYPE = DEFAULTVALUE
+async def getctf(interaction):
+
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+    websiteresponse = requests.get("https://ctftime.org/event/list/upcoming", headers=headers)
+    websitehtml = websiteresponse.text
+    #websitehtml = websitehtml.replace("<br />", "\n").replace("<b>", "### ")
+    soup = BeautifulSoup(websitehtml, 'html5lib')
+    table = soup.find_all("div", {"class" : "container"})[1]
+    tablerows = table.findChildren("tr")
+    finalmessage = '''
+    > ## Here are some upcoming CTFs:
+    '''
+    for row in tablerows[1:11]: # we loop from the second item to skip the header
+        datarows = row.findChildren("td")
+        eventlink = "https://ctftime.org" + datarows[0].find("a", href=True)["href"]
+        eventdate = datarows[1].get_text().replace("Sept", "Sep").split(" — ")
+        startdt = datetime.strptime(str(datetime.now().year) + " " + eventdate[0], '%Y %d %b., %H:%M %Z')
+        enddt = datetime.strptime(eventdate[1], '%d %b. %Y, %H:%M %Z')
+        eventstart = "<t:" + str(startdt.timestamp())[:-2] + ":d><t:" + str(startdt.timestamp())[:-2] + ":t>"
+        eventend = "<t:" + str(enddt.timestamp())[:-2] + ":d><t:" + str(enddt.timestamp())[:-2] + ":t>"
+        finalmessage += "> [" + datarows[0].get_text() + "](<" + eventlink + ">) on " + eventstart + " Event ID: `" + eventlink.replace("https://ctftime.org/event/", "") + "`\n"
+    finalmessage += "> \n> ***all dates are in UTC*** \n"
+    #with open("output.html", "w", encoding="UTF-8") as file:
+        #file.write(soup.prettify())
+    await interaction.response.send_message(finalmessage)
+
+'''@tree.command(name="getctf", description="Find upcoming CTFs") #register a command into discord
+#variable structure: VARIABLENAME: TYPE = DEFAULTVALUE
 async def getctf(interaction, amount: app_commands.Range[int, 5, 20] = 10):
     maxresults = amount + 1 #maxresults needs value + 1 for some reason
     timemin = datetime.now().strftime("%Y-%m-%d") #timemin is the current datetime
@@ -64,11 +91,9 @@ async def getctf(interaction, amount: app_commands.Range[int, 5, 20] = 10):
     rescontent = res.content.decode('utf8')  # .replace("'", '"')
 
     responsejson = json.loads(rescontent)
-    '''with open("output.json", "w") as file:
-        json.dump(responsejson, file, indent=4)'''
-    finalmessage = '''
-    > ## Here are some upcoming CTFs:
-    '''
+    with open("output.json", "w") as file:
+        json.dump(responsejson, file, indent=4)
+    finalmessage = '> ## Here are some upcoming CTFs:'
     upcomingevents = responsejson["items"]
     upcomingevents = sorted(upcomingevents, key=lambda x: x["start"]["dateTime"])
     names = []
@@ -98,6 +123,8 @@ async def getctf(interaction, amount: app_commands.Range[int, 5, 20] = 10):
     }
     
     await interaction.response.send_message(body["content"], ephemeral=False)
+'''
+    
 '''
 Code to post a webhook
 requests.post(
