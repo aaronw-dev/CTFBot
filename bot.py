@@ -53,7 +53,7 @@ async def ctfinfo(interaction, eventid: int):
 
 @tree.command(name="getctf", description="Find upcoming CTFs") #register a command into discord
 #variable structure: VARIABLENAME: TYPE = DEFAULTVALUE
-async def getctf(interaction):
+async def getctf(interaction, amount: app_commands.Range[int, 1, 15] = 10):
 
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     websiteresponse = requests.get("https://ctftime.org/event/list/upcoming", headers=headers)
@@ -65,7 +65,7 @@ async def getctf(interaction):
     finalmessage = '''
     > ## Here are some upcoming CTFs:
     '''
-    for row in tablerows[1:11]: # we loop from the second item to skip the header
+    for row in tablerows[1:amount + 1]: # we loop from the second item to skip the header
         datarows = row.findChildren("td")
         eventlink = "https://ctftime.org" + datarows[0].find("a", href=True)["href"]
         eventdate = datarows[1].get_text().replace("Sept", "Sep").split(" — ")
