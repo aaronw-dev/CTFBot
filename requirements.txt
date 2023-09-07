@@ -1,0 +1,5 @@
+beautifulsoup4==4.12.2
+discord.py==2.3.2
+python_dateutil==2.8.2
+pytz==2023.3
+Requests==2.31.0
