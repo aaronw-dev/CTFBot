@@ -296,40 +296,72 @@ async def ctfpoll(interaction, eventid: int):
     await infomessage.add_reaction("<:yes:1148772032302039121>")
     await infomessage.add_reaction("<:no:1148772028216778792>")
 
-    def check(reaction, user):
-        return (not user.bot) and reaction.message == infomessage
+    with open("votes.json", "r") as file:
+        votes = json.load(file)
+    if str(eventid) not in votes:
+        votes[str(eventid)] = {
+            "poll_id": infomessage.id,
+            "url": "",
+            "votesyes": 0,
+            "votesno": 0,
+            "participants": [],
+        }
+    with open("votes.json", "w") as file:
+        json.dump(votes, file, indent=4)
 
-    while True:
-        reaction, user = await client.wait_for("reaction_add", check=check)
-        with open("votes.json", "r") as file:
-            votes = json.load(file)
-        if str(eventid) not in votes:
-            votes[str(eventid)] = {
-                "url": "",
-                "votesyes": 0,
-                "votesno": 0,
-                "participants": [],
-            }
-        votes[str(eventid)]["url"] = eventurl
-        votes[str(eventid)]["name"] = eventname
-        try:
-            if reaction.emoji.id == 1148772032302039121:
-                print("yes")
-                votes[str(eventid)]["votesyes"] += 1
-                votes[str(eventid)]["participants"].append(
-                    {
-                        "id": str(user.id),
-                        "username": user.name,
-                        "displayname": user.display_name,
-                    }
-                )
-            if reaction.emoji.id == 1148772028216778792:
-                print("no")
-                votes[str(eventid)]["votesno"] += 1
-            with open("votes.json", "w") as file:
-                json.dump(votes, file, indent=4)
-        except:
-            continue
+
+@client.event
+async def on_raw_reaction_add(payload):
+    with open("votes.json", "r") as file:
+        votes = json.load(file)
+
+    valueindex = 0
+    for value in votes.values():
+        if payload.message_id == value["poll_id"]:
+            eventid = list(votes)[valueindex]
+            if payload.emoji.is_custom_emoji():
+                if payload.emoji.id == 1148772032302039121:  # yes emoji
+                    votes[eventid]["votesyes"] += 1
+                    member = await client.fetch_user(payload.user_id)
+                    votes[eventid]["participants"].append(
+                        {
+                            "id": member.id,
+                            "username": member.name,
+                            "displayname": member.display_name,
+                        }
+                    )
+                if payload.emoji.id == 1148772028216778792:  # no emoji
+                    votes[eventid]["votesno"] += 1
+        valueindex += 1
+    with open("votes.json", "w") as file:
+        json.dump(votes, file, indent=4)
+
+
+@client.event
+async def on_raw_reaction_remove(payload):
+    with open("votes.json", "r") as file:
+        votes = json.load(file)
+
+    valueindex = 0
+    for value in votes.values():
+        if payload.message_id == value["poll_id"]:
+            eventid = list(votes)[valueindex]
+            member = await client.fetch_user(payload.user_id)
+            if payload.emoji.is_custom_emoji():
+                if payload.emoji.id == 1148772032302039121:  # yes emoji
+                    votes[eventid]["votesyes"] -= 1
+                    votes[eventid]["participants"].remove(
+                        {
+                            "id": member.id,
+                            "username": member.name,
+                            "displayname": member.display_name,
+                        }
+                    )
+                if payload.emoji.id == 1148772028216778792:  # no emoji
+                    votes[eventid]["votesno"] -= 1
+        valueindex += 1
+    with open("votes.json", "w") as file:
+        json.dump(votes, file, indent=4)
 
 
 @tree.command(name="getctf", description="Find upcoming CTFs")
@@ -409,55 +441,8 @@ async def createevent(
         str(meridiem),
     ]
     eventstartdate = datetime.strptime(" ".join(eventarray), "%m %d %Y %I %M %p")
-    print(str(eventstartdate))
     await interaction.response.send_message(str(eventstartdate), ephemeral=True)
 
-
-"""@tree.command(name="getctf", description="Find upcoming CTFs") #register a command into discord
-#variable structure: VARIABLENAME: TYPE = DEFAULTVALUE
-async def getctf(interaction, amount: app_commands.Range[int, 5, 20] = 10):
-    maxresults = amount + 1 #maxresults needs value + 1 for some reason
-    timemin = datetime.now().strftime("%Y-%m-%d") #timemin is the current datetime
-    timemax = (datetime.now() + relativedelta(years=1)).strftime("%Y-%m-%d") #timemax is the current datetime + 1 year
-    rssurl = f"https://clients6.google.com/calendar/v3/calendars/ctftime@gmail.com/events?calendarId=ctftime%40gmail.com&singleEvents=true&timeZone=Africa%2FAbidjan&maxAttendees=1&maxResults={maxresults}&sanitizeHtml=true&timeMin={timemin}T00%3A00%3A00Z&timeMax={timemax}T00%3A00%3A00Z&key=AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs"
-    res = requests.get(rssurl)
-    
-    rescontent = res.content.decode('utf8')  # .replace("'", '"')
-
-    responsejson = json.loads(rescontent)
-    with open("output.json", "w") as file:
-        json.dump(responsejson, file, indent=4)
-    finalmessage = '> ## Here are some upcoming CTFs:'
-    upcomingevents = responsejson["items"]
-    upcomingevents = sorted(upcomingevents, key=lambda x: x["start"]["dateTime"])
-    names = []
-    messagewidth = 60
-    for item in upcomingevents:
-        eventName = item["summary"]
-        eventTime = datetime.fromisoformat(item["start"]["dateTime"])
-        eventTimezone = item["start"]["timeZone"] #Format: UTC
-        eventDuration = datetime.fromisoformat(item["end"]["dateTime"]) - datetime.fromisoformat(item["start"]["dateTime"])
-        durationDays = eventDuration.days
-        durationHours = floor(eventDuration.seconds / 3600)
-        durationMinutes = floor(((eventDuration.seconds / 3600) - durationHours) * 60)
-        durationSeconds = floor((((eventDuration.seconds / 3600) - durationHours) * 60 - durationMinutes) * 60)
-        now = datetime.now()
-        now = pytz.UTC.localize(now) 
-        if(eventTime < now):
-            continue
-        eventLink = item["description"][-32:-2]
-        names.append(item)
-        finalmessage += "> " + "[" + item["summary"] + "](<" + eventLink + ">)" + " on " + "<t:" + str(calendar.timegm(eventTime.timetuple())) + ":D>"
-        finalmessage += "   **ID:** `" + eventLink.replace("https://ctftime.org/event/", "") + "`"
-        finalmessage += ("   **duration:** " + str(durationHours) + " hour" + ("s" if durationHours != 1 else "") + " " + ((str(durationMinutes) + " minute" + ("s" if durationHours != 1 else "")) if durationMinutes != 0 else "")) if durationHours != 0 else "" 
-        finalmessage += "\n"
-    finalmessage += "\n"
-    body = {
-        "content": finalmessage
-    }
-    
-    await interaction.response.send_message(body["content"], ephemeral=False)
-"""
 
 """
 Code to post a webhook
