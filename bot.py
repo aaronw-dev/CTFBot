@@ -15,10 +15,6 @@ intents = discord.Intents().all()  # we need all discord intents
 client = discord.Client(intents=intents)  # init a client with given intents
 tree = app_commands.CommandTree(client)  # for discord commands
 
-with open("webhookurl.token", "r") as file:
-    webhookurl = file.read()  # get the webhook url from file
-
-
 @tree.command(name="ctfinfo", description="Get more information about a CTF event")
 async def ctfinfo(interaction, eventid: int):
     headers = {
@@ -443,13 +439,85 @@ async def createevent(
     eventstartdate = datetime.strptime(" ".join(eventarray), "%m %d %Y %I %M %p")
     await interaction.response.send_message(str(eventstartdate), ephemeral=True)
 
+# ADD DECORATOR TO CHECK FOR USERID 
+@tree.command(name="addctfchannels",
+              description="add ctf category channel by name")
+async def add_ctf_channels(interaction, ctf_name: str, headers: bool=True, announce: bool=True):
+  
+  if interaction.user.id == 937168534830719008:
 
-"""
-Code to post a webhook
-requests.post(
-    webhookurl,
-    json=body)
-"""
+    channels = ["general", "web", "crypto", "pwn", "misc", "rev", "forensics", "osint"]
+
+    await interaction.response.send_message(f"added new CTF category: {ctf_name}", ephemeral=True)
+    category = await interaction.guild.create_category(ctf_name)
+    for chann in channels:
+        await interaction.guild.create_text_channel(chann, category=category)
+        # send in announcements channel that ctf category has been added
+
+    # send message in every new channel introducing it 
+    if headers:
+        for chann in category.channels:
+            if not chann.name == channels[0]:
+                await chann.send(f"""🚩 Welcome to the CTF Channel related to {chann.name}! 🕵️‍♂️💻
+
+        Share your knowledge, discuss vulns, and collaborate here! Let's get this! 💪
+                            
+        **Important: it's not good practice to share the flags here as intruders could steal them from us ( and we dont want that ofc )**
+
+        Remember, keep the conversation focused on {chann.name} CTF topic. Go Reset!! :reset:
+        -----------------------------""")
+            else:
+                await chann.send(f"""🌐 Welcome to the General CTF Channel for {ctf_name}! 🏴‍☠️💻
+
+        here you can talk about pretty much everything (please keep it related to the ctf though 🙏) and please don't share flags here
+
+        -----------------------------""")
+    if announce:
+        chann = client.get_channel(1145029741561258015)
+        message = await chann.send(f"new ctf category for {ctf_name} added!")
+        emoji = '\U0001F973'
+        await message.add_reaction(emoji)
+  else:
+     await interaction.response.send_message("you are not allowed to run this command!", ephemeral=True)
+
+# purge ctf channels command?
+
+def vrfy_ctf_category(category : discord.CategoryChannel) -> bool:
+  vrfy_channels = ["web", "forensics"]
+  count = 0
+  for vrf in vrfy_channels:
+    for chann in category.channels:
+      if str(chann.name) == vrf:
+        count += 1
+  if count >= 2:
+    return True
+  else:
+    return False
+        
+
+@tree.command(name="delctfcategory",
+              description="del ctf category channels by name")
+async def del_ctf_channels(interaction, category: discord.CategoryChannel):
+  if interaction.user.id == 937168534830719008:
+
+    channels = category.channels
+
+    if vrfy_ctf_category(category):
+        await interaction.response.send_message(f"Deleted CTF category: {category.name}", ephemeral=True)
+        for chann in channels:
+            await chann.delete()
+        await category.delete()
+    else:
+        await interaction.response.send_message("this is not a CTF category!", ephemeral=True)
+  else:
+      await interaction.response.send_message("you are not allowed to run this command!", ephemeral=True)
+
+
+@client.event
+async def on_message(message):
+  if message.author.bot:
+    return
+  print(message.author.display_name + ": " + message.content)
 
 
 @client.event
