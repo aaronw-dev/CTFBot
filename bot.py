@@ -479,7 +479,7 @@ async def add_ctf_channels(
                             
         **Important: it's not good practice to share the flags here as intruders could steal them from us ( and we dont want that ofc )**
 
-        Remember, keep the conversation focused on {chann.name} CTF topic. Go Reset!! :reset:
+        Remember, keep the conversation focused on {chann.name} CTF topic. Go Reset!! <:reset:1145367774626062396>
         -----------------------------"""
                     )
                 else:
