@@ -4,9 +4,10 @@ A very simple Discord bot to find new and upcoming CTF events, powered by CTFTim
 ## Commands
 ### /ctfinfo | `eventid`
 Find more information about a CTF event. Powered by web scraping.
-
+![/ctfinfo command](img/ctfinfo.png)
 ### /upcoming
 Get upcoming CTF events from CTFTime. Powered by web scraping.
+![/ctfinfo command](img/upcoming.png)
 
 ### /ctfparticipants | `eventid`
 Get a list of people participating in a CTF event. 
