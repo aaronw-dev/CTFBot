@@ -18,7 +18,7 @@ tree = app_commands.CommandTree(client)  # for discord commands
 whitelist = [937168534830719008, 719678705613537361]
 
 
-@tree.command(name="ctfinfo", description="Get more information about a CTF event")
+"""@tree.command(name="ctfinfo", description="Get more information about a CTF event")
 async def ctfinfo(interaction, eventid: int):
     headers = {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
@@ -68,6 +68,8 @@ async def ctfinfo(interaction, eventid: int):
     # message += "> 🔹 [" + linkdiv.get_text().strip() + "](<https://ctftime.org" + linkdiv["href"] + ">)" + "\n"
 
     await interaction.response.send_message(message, ephemeral=False)
+
+"""
 
 
 @tree.command(name="upcoming", description="Get the next 7 days of CTF events")
@@ -363,7 +365,7 @@ async def on_raw_reaction_remove(payload):
         json.dump(votes, file, indent=4)
 
 
-@tree.command(name="getctf", description="Find upcoming CTFs")
+'''@tree.command(name="getctf", description="Find upcoming CTFs")
 # variable structure: VARIABLENAME: TYPE = DEFAULTVALUE
 async def getctf(interaction, amount: app_commands.Range[int, 1, 15] = 10):
     headers = {
@@ -419,6 +421,7 @@ async def getctf(interaction, amount: app_commands.Range[int, 1, 15] = 10):
     # with open("output.html", "w", encoding="UTF-8") as file:
     # file.write(soup.prettify())
     await interaction.response.send_message(finalmessage)
+'''
 
 
 @tree.command(name="createevent", description="Create an event.")
@@ -501,9 +504,6 @@ async def add_ctf_channels(
         )
 
 
-# purge ctf channels command?
-
-
 def vrfy_ctf_category(category: discord.CategoryChannel) -> bool:
     vrfy_channels = ["web", "forensics"]
     count = 0
@@ -519,7 +519,7 @@ def vrfy_ctf_category(category: discord.CategoryChannel) -> bool:
 
 @tree.command(name="delctfcategory", description="del ctf category channels by name")
 async def del_ctf_channels(interaction, category: discord.CategoryChannel):
-    if interaction.user.id == 937168534830719008:
+    if interaction.user.id in whitelist:
         channels = category.channels
 
         if vrfy_ctf_category(category):
