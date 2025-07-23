@@ -18,60 +18,6 @@ tree = app_commands.CommandTree(client)  # for discord commands
 whitelist = [937168534830719008, 719678705613537361]
 
 
-"""@tree.command(name="ctfinfo", description="Get more information about a CTF event")
-async def ctfinfo(interaction, eventid: int):
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
-    }
-    websiteresponse = requests.get(
-        "https://ctftime.org/event/" + str(eventid), headers=headers
-    )
-    websitehtml = websiteresponse.text
-
-    websitehtml = websitehtml.replace("<br />", "\n").replace("<b>", "### ")
-
-    soup = BeautifulSoup(websitehtml, "html5lib")
-    pageheader = soup.find("div", {"class": "page-header"}).find("h2")
-    eventname = pageheader.get_text()
-    teamamount = soup.find(lambda tag: tag.name == "p" and "teams total" in tag.text)
-    teamamount = teamamount.get_text().split(" ")[0]
-
-    teams = []
-    for div in soup.find_all("tr")[1:11]:
-        linkdiv = div.find("a", href=True)
-        teams.append(
-            {
-                "name": linkdiv.get_text().strip(),
-                "link": "https://ctftime.org" + linkdiv["href"],
-            }
-        )
-    informationbox = soup.find("div", {"class": "span10"})
-    informationboxes = informationbox.findChildren("p", recursive=False)
-    eventformat = informationboxes[4].get_text().replace("Format: ", "")
-    eventurl = informationboxes[5].get_text().replace("Official URL: ", "")
-    eventlocation = informationboxes[1].get_text().replace("### ", "")
-    message = "> # [" + eventname + "](<" + eventurl + ">)" + "\n"
-    message += "> ## Event ID: `" + str(eventid) + "`\n"
-    message += "> ## Format: " + eventformat + "\n"
-    message += "> ## Location: " + eventlocation.replace("On-line", "Online") + "\n"
-    message += "> ## Teams: " + teamamount + "\n"
-    message += "> ## Description \n> "
-    message += (
-        soup.find("div", {"id": "id_description"})
-        .get_text()
-        .strip()
-        .replace("\n", "\n> ")
-        + "\n"
-    )
-    # for div in teams[1:11]:
-    # linkdiv = div.find("a", href=True)
-    # message += "> 🔹 [" + linkdiv.get_text().strip() + "](<https://ctftime.org" + linkdiv["href"] + ">)" + "\n"
-
-    await interaction.response.send_message(message, ephemeral=False)
-
-"""
-
-
 @tree.command(name="upcoming", description="Get the next 7 days of CTF events")
 async def upcoming(interaction):
     headers = {
@@ -147,8 +93,8 @@ async def upcoming(interaction):
 
 
 @tree.command(
-    name="more_info",
-    description="Get more information about a specific CTF by CTF Time ID",
+    name="ctfinfo",
+    description="Get more information about a specific CTF by CTFTime ID",
 )
 async def ctfinfo(interaction, eventid: int):
     headers = {
@@ -390,7 +336,7 @@ async def createevent(
 # ADD DECORATOR TO CHECK FOR USERID
 @tree.command(name="addctfchannels", description="add ctf category channel by name")
 async def add_ctf_channels(
-    interaction, ctf_name: str, headers: bool = True, announce: bool = True
+    interaction, ctf_name: str, headers: bool = True, announce: bool = False
 ):
     if interaction.user.id in whitelist:
         channels = [
@@ -479,6 +425,26 @@ async def del_ctf_channels(interaction, category: discord.CategoryChannel):
             "you are not allowed to run this command!", ephemeral=True
         )
 
+@tree.command(name="archivecategory", description="archive ctf category channels")
+async def del_ctf_channels(interaction:discord.Interaction, category: discord.CategoryChannel):
+    if interaction.user.id in whitelist:
+        channels = category.channels
+
+        if vrfy_ctf_category(category):
+            await interaction.response.send_message(
+                f"Archived CTF category: {category.name}", ephemeral=True
+            )
+            for chann in channels:
+                await chann.set_permissions(interaction.guild.default_role, view_channel=False)
+            await category.edit(name=f"(Archived) {category.name}")
+        else:
+            await interaction.response.send_message(
+                "this is not a CTF category!", ephemeral=True
+            )
+    else:
+        await interaction.response.send_message(
+            "you are not allowed to run this command!", ephemeral=True
+        )
 
 @client.event
 async def on_message(message):
